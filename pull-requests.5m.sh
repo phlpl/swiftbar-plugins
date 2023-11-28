@@ -32,7 +32,7 @@ results=$(curl -s -L \
 
 count=$(echo $results | jq length)
 
-echo "pr:$count"
+echo "$count | sfimage=arrow.triangle.pull"
 echo "---"
 
 for (( i=0; i<$count; i++ ))
