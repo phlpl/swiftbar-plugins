@@ -37,7 +37,7 @@ do
     repo_count=$(echo $results | jq length)
     total_count=$(( total_count + repo_count ))
 
-    pr_output+="$repo: $repo_count \n"
+    pr_output+="$repo: $repo_count | href=https://github.com/$repo \n"
 
     for (( i=0; i<$repo_count; i++ ))
     do
