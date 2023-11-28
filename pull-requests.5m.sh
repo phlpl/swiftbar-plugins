@@ -42,5 +42,11 @@ do
     title=$(echo $results | jq -r --argjson i $i '.[$i].title')
     user_login=$(echo $results | jq -r --argjson i $i '.[$i].user.login')
     html_url=$(echo $results | jq -r --argjson i $i '.[$i].html_url')
-    echo "#$number $title ($user_login) | href=$html_url"
+    updated_at=$(echo $results | jq -r --argjson i $i '.[$i].updated_at')
+
+    updated_at_seconds=$(date -j -f "%Y-%m-%dT%H:%M:%SZ" "$updated_at" +%s)
+    current_time=$(date -u +%s)
+    difference_hrs=$(( (current_time - updated_at_seconds) / 3600 ))
+
+    echo "#$number $title ($user_login) ${difference_hrs}hrs ago | href=$html_url"
 done
