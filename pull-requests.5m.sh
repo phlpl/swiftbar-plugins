@@ -19,10 +19,10 @@
 # 
 # Todos:
 # Allow for more than 1 repo
-# Check timestamp to show 'new'
 
 repo='OWNER/REPO'
 token='FINE-GRAINED-TOKEN'
+new_status_window_hours=1
 
 results=$(curl -s -L \
   -H "Accept: application/vnd.github+json" \
@@ -32,8 +32,8 @@ results=$(curl -s -L \
 
 count=$(echo $results | jq length)
 
-echo "$count | sfimage=arrow.triangle.pull"
-echo "---"
+pr_output=''
+title_indicator=''
 
 for (( i=0; i<$count; i++ ))
 do
@@ -48,5 +48,14 @@ do
     current_time=$(date -u +%s)
     difference_hrs=$(( (current_time - updated_at_seconds) / 3600 ))
 
-    echo "#$number $title ($user_login) ${difference_hrs}hrs ago | href=$html_url"
+    if [ $difference_hrs -le $new_status_window_hours ]; then
+        title_indicator='color=blue'
+    fi
+
+    pr_output+="#$number $title ($user_login) ${difference_hrs}hrs ago | href=$html_url \n"
 done
+
+echo "$count | sfimage=arrow.triangle.pull $title_indicator"
+echo "---"
+
+echo -e $pr_output
