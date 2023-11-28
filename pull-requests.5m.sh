@@ -4,7 +4,7 @@
 # <bitbar.version>v1.0</bitbar.version>
 # <bitbar.author>phlpl</bitbar.author>
 # <bitbar.author.github>phlpl</bitbar.author.github>
-# <bitbar.desc>Shows prs for 1 repo.  Node version in bash, for ref: https://github.com/matryer/xbar-plugins/blob/main/Dev/GitHub/pull-requests.5m.js</bitbar.desc>
+# <bitbar.desc>Shows prs for 1 repo</bitbar.desc>
 # <bitbar.dependencies>brew install jq</bitbar.dependencies>
 # <bitbar.abouturl>https://github.com/phlpl</bitbar.abouturl>
 #
