@@ -4,7 +4,7 @@
 
 Monitor pull requests for multiple github repositories.  
 
-![image](https://github.com/phlpl/swiftbar-plugins/assets/9218510/622e6ba3-27af-49c3-ac93-5b297ff31677)
+![image](https://github.com/phlpl/swiftbar-plugins/assets/9218510/c27da23d-8243-4513-a8da-372549286a57)
 
 Node version rewritten in bash.  For [reference](https://github.com/matryer/xbar-plugins/blob/main/Dev/GitHub/pull-requests.5m.js).
 
