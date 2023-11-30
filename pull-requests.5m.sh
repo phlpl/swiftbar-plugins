@@ -24,7 +24,7 @@ new_status_window_hours=1
 
 total_count=0
 pr_output=''
-title_indicator=''
+title_colour_indicator=''
 
 for repo in "${repos[@]}"
 do
@@ -52,7 +52,10 @@ do
         difference_hrs=$(( (current_time - updated_at_seconds) / 3600 ))
 
         if [ $difference_hrs -le $new_status_window_hours ]; then
-            title_indicator='color=blue'
+            pr_colour_indicator='color=blue'
+            title_colour_indicator='color=blue'
+        else
+            pr_colour_indicator=''
         fi
 
         connector='├'
@@ -61,11 +64,11 @@ do
             connector='└'
         fi
 
-        pr_output+="${connector} #$number $title ($user_login) ${difference_hrs}hrs ago | href=$html_url \n"
+        pr_output+="${connector} #$number $title ($user_login) ${difference_hrs}hrs ago | href=$html_url $pr_colour_indicator \n"
     done
+    pr_output+='---\n'
 done
 
-echo "$total_count | sfimage=arrow.triangle.pull $title_indicator"
+echo "$total_count | sfimage=arrow.triangle.pull $title_colour_indicator"
 echo "---"
-
 echo -e $pr_output
